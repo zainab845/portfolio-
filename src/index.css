@@ -518,7 +518,7 @@ button { cursor: pointer; font-family: inherit; }
   .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
 }
 
-/* ===== AUTH PAGES ===== */
+
 .auth-page {
   min-height: 100vh;
   display: flex;
