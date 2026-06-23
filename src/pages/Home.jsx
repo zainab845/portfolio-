@@ -1,3 +1,9 @@
-export default function ComponentName() {
-  return <div>Placeholder</div>
+import Hero from '../sections/Hero'
+
+export default function Home() {
+  return (
+    <main>
+      <Hero />
+    </main>
+  )
 }

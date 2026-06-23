@@ -152,3 +152,48 @@ button { cursor: pointer; font-family: inherit; }
   }
   .navbar-links.open { display: flex; }
 }
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 64px; /* navbar height */
+  background: radial-gradient(ellipse at 60% 40%, rgba(99,102,241,0.12) 0%, transparent 70%);
+}
+
+.hero-content { max-width: 680px; }
+
+.hero-greeting {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.hero-name {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+
+.hero-role {
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 520px;
+  margin-bottom: 36px;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
