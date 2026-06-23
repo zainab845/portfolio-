@@ -360,6 +360,7 @@ button { cursor: pointer; font-family: inherit; }
   border-radius: var(--radius-sm);
   color: var(--color-text-muted);
 }
+
 /* ===== CONTACT ===== */
 .contact-wrapper {
   display: grid;
