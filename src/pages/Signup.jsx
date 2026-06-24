@@ -1,14 +1,19 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { signupUser } from '../api/auth'
 
 export default function Signup() {
   const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' })
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
   const handleSubmit = async e => {
     e.preventDefault()
+    setError('')
+
     if (!form.name || !form.email || !form.password || !form.confirm) {
       setError('Please fill in all fields.')
       return
@@ -21,8 +26,18 @@ export default function Signup() {
       setError('Password must be at least 8 characters.')
       return
     }
-    // API call goes here tomorrow
-    console.log('Signup:', form)
+
+    setLoading(true)
+    try {
+      const data = await signupUser(form.name, form.email, form.password)
+      localStorage.setItem('token', data.token)
+      localStorage.setItem('user', JSON.stringify({ name: data.name, email: data.email }))
+      navigate('/')
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -53,8 +68,9 @@ export default function Signup() {
               value={form.confirm} onChange={handleChange} />
           </div>
           {error && <p className="form-msg error">{error}</p>}
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '4px' }}>
-            Create Account
+          <button type="submit" className="btn btn-primary"
+            style={{ width: '100%', marginTop: '4px' }} disabled={loading}>
+            {loading ? 'Creating account...' : 'Create Account'}
           </button>
         </form>
 
